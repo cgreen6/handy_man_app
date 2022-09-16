@@ -5,7 +5,7 @@ class Api::ServicesController < ApplicationController
 
   def show
     @service = Service.find(params[:id])
-    render json: @Services
+    render json: @service
   end
 
   def create
