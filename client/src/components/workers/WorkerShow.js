@@ -39,7 +39,7 @@ const WorkerShow = ({ id, title, desc, updateWorker, deleteWorker }) => {
           </Link>
         </div>
       }
-      <hr />
+      <h1 />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import WorkerShow from './WorkerShow';
+import ServiceShow from './ServiceShow';
 
 const ServiceList = ({ services, updateService, deleteService }) => (
   <>

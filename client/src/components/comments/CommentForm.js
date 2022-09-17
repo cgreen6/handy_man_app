@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
 
-const WorkerForm = ({ addWorker, id, title, desc, updateWorker, setEdit }) => {
-  const [worker, setWorker] = useState({ title: '', desc: '' })
+const CommentForm = ({ addComment, id, title, desc, updateComment, setEdit }) => {
+  const [comment, setComment] = useState({ title: '', desc: '' })
 
   useEffect( () => {
     if (id) {
-      setWorker({ title, desc })
+      setComment({ title, desc })
     }
   }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (id) {
-      updateWorker(id, worker)
+      updateComment(id, comment)
       setEdit(false)
     } else {
-      addWorker(worker)
+      addComment(comment)
     }
-    setWorker({ title: '', desc: '' })
+    setComment({ title: '', desc: '' })
   }
 
   return (
@@ -26,15 +26,15 @@ const WorkerForm = ({ addWorker, id, title, desc, updateWorker, setEdit }) => {
       <form onSubmit={handleSubmit}>
         <input 
           name='title'
-          value={worker.title}
-          onChange={(e) => setWorker({ ...worker, title: e.target.value })}
+          value={comment.title}
+          onChange={(e) => setComment({ ...comment, title: e.target.value })}
           required
-          placeholder='Worker name'
+          placeholder='Comment name'
         />
         <textarea
           name='desc'
-          value={worker.desc}
-          onChange={(e) => setWorker({ ...worker, desc: e.target.value })}
+          value={comment.desc}
+          onChange={(e) => setComment({ ...comment, desc: e.target.value })}
           required
           placeholder='description'
         ></textarea>
@@ -44,4 +44,4 @@ const WorkerForm = ({ addWorker, id, title, desc, updateWorker, setEdit }) => {
   )
 }
 
-export default WorkerForm;
+export default CommentForm;
