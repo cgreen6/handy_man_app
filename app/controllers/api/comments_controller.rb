@@ -7,7 +7,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def show
-    render json: @comment
+    render json: Comment
   end
 
   def create

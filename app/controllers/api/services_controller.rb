@@ -3,7 +3,7 @@ class Api::ServicesController < ApplicationController
   before_action :set_service, only: [:show, :update, :destroy]
 
   def index
-    render json: @comment.service
+    render json: @handy.service
   end
 
   def show
@@ -11,7 +11,7 @@ class Api::ServicesController < ApplicationController
   end
 
   def create
-    @service = @comment.service.new(service_params)
+    @service = @handyman.service.new(service_params)
     if @service.save
       render json: @service
     else
@@ -29,7 +29,10 @@ class Api::ServicesController < ApplicationController
 
   def destroy
     @service.destroy
-    render json: { message: 'Service Deleted' }
+    render json: { message: 'service deleted' }
+    or
+    Service.find(params[:id]).destroy
+    render json: { message: 'service deleted' }
   end
 
   private
