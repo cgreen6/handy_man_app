@@ -1,17 +1,16 @@
-import Moment from 'react-moment';
 import { useState } from 'react';
-import ServiceForm from './ServiceForm';
+import CommentForm from './CommentForm';
 import { Link } from 'react-router-dom';
 
-const ServiceShow = ({ id, title, desc, updateService, deleteService }) => {
+const CommentShow = ({ id, title, desc, updateComment, deleteComment }) => {
   const [editing, setEdit] = useState(false)
 
   return (
     <>
       { editing ?
         <>
-          <ServiceForm 
-            updateService={updateService}
+          <CommentForm 
+            updateComment={updateComment}
             id={id}
             title={title}
             desc={desc}
@@ -27,16 +26,16 @@ const ServiceShow = ({ id, title, desc, updateService, deleteService }) => {
           <button onClick={() => setEdit(true)}>
             Edit
           </button>
-          <button onClick={() => deleteService(id)}>
+          <button onClick={() => deleteComment(id)}>
             Delete
           </button>
           <Link
-            to={`/${id}/service`} //path of where its going to 
+            to={`/${id}/comment`} //path of where its going to 
             // id the list id
-            state={{ ServiceTitle: title }}
+            state={{ CommentTitle: title }}
             // state only read only value to pass to the page
           >
-            <button>Comments</button>
+            <button>Services</button>
           </Link>
         </div>
       }
@@ -45,4 +44,4 @@ const ServiceShow = ({ id, title, desc, updateService, deleteService }) => {
   )
 }
 
-export default ServiceShow;
+export default CommentShow;

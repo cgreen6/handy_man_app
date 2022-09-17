@@ -1,15 +1,17 @@
 class Api::ServicesController < ApplicationController
+  before_action :set_comment 
+  before_action :set_service, only: [:show, :update, :destroy]
+
   def index
-    render json: Service.all
+    render json: @handy.service
   end
 
   def show
-    @service = Service.find(params[:id])
     render json: @service
   end
 
   def create
-    @service = Service.new(service_params)
+    @service = @handyman.service.new(service_params)
     if @service.save
       render json: @service
     else
@@ -18,7 +20,6 @@ class Api::ServicesController < ApplicationController
   end
 
   def update
-    @service = Service.find(params[:id])
     if @service.update(service_params)
       render json: @service
     else
@@ -27,7 +28,6 @@ class Api::ServicesController < ApplicationController
   end
 
   def destroy
-    @service = Service.find(params[:id])
     @service.destroy
     render json: { message: 'service deleted' }
     or
@@ -36,7 +36,15 @@ class Api::ServicesController < ApplicationController
   end
 
   private
-  def service_params
-    params.require(:service).permit(:title, :complete, :rating, :prive)
-  end
+    def set_comment
+      @comment = Comment.find(params[:comment_id])
+    end
+
+    def service_params
+      params.require(:note).permit(:subject, :body)
+    end
+
+    def set_service
+      @service = @comment.services.find(params[:id])
+    end
 end

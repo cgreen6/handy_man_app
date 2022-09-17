@@ -2,12 +2,12 @@ const Team = () => (
   <>
     <h1>Meet The Team</h1>
     <div>
-      <h4>Team 1</h4>
-      <img src='' />
+      <h4>Dwayne Johansen</h4>
+      <img src='./components/images/Dwayne.jpeg' />
     </div>
     <div>
-      <h4>Team 2</h4>
-      <img src='' />
+      <h4>Michael Scott</h4>
+      <img src='./components/images/Steve.jpeg' />
     </div>
     <div>
       <h4>Team 3</h4>

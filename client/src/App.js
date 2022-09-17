@@ -12,8 +12,7 @@ const App = () => (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/about' element={<About />} />
-      <Route path='/workers' element={<Lists />} />
-      <Route path='/:workerId/workers' element={<Worker />} />
+      <Route path='/workers' element={<Workers />} />
       <Route path='/:commentId/comments' element={<Comments />} />
       <Route path='/*' element={<Nomatch />} />
     </Routes>

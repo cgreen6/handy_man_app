@@ -1,15 +1,17 @@
 class Api::CommentsController < ApplicationController
+  before_action :set_handyman, 
+  before_action :set_comment, only: [:show, :update, :destroy]
+
   def index
-    render json: Comment.all
+    render json: @handyman.comment
   end
 
   def show
-    @comment = Comment.find(params[:id])
-    render json: @comment
+    render json: Comment
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @handyman.comment.new(comment_params)
     if @comment.save
       render json: @comment
     else
@@ -18,7 +20,6 @@ class Api::CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       render json: @comment
     else
@@ -27,16 +28,20 @@ class Api::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
-    render json: { message: 'comment deleted' }
-    or
-    Comment.find(params[:id]).destroy
-    render json: { message: 'comment deleted' }
+    render json: { message: 'Comment Deleted' }
   end
 
   private
-  def comment_params
-    params.require(:comment).permit(:subject)
-  end
+    def set_handyman
+      @handyman = Handyman.find(params[:handyman_id])
+    end
+
+    def comments_params
+      params.require(:note).permit(:subject)
+    end
+
+    def set_comment
+      @comment = @handyman.comments.find(params[:id])
+    end
 end
